@@ -1,7 +1,11 @@
 import React from "react";
 
 const Login = () => {
-  return <div>Login Page</div>;
+  return (
+    <main className="flex flex-col min-h-screen max-w-2xl items-center justify-between mx-auto p-6">
+      Login
+    </main>
+  );
 };
 
 export default Login;
