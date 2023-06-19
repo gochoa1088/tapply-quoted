@@ -23,7 +23,7 @@ export default function Home() {
           <Image src="/ae.jpg" width={500} height={100} alt="einstein" />
         </div>
         <div className="relative h-20 overflow-clip rounded-lg sm:h-28">
-          <span className="absolute text-2xl font-bold text-slate-900 left-10 top-2">
+          <span className="absolute text-2xl font-bold text-slate-900 left-14 top-2">
             Share
           </span>
           <Image src="/frida.jpg" width={500} height={100} alt="frida" />
