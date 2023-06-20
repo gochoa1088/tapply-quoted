@@ -1,6 +1,7 @@
 "use client";
 
 import updateUser from "@/firebase/firestore/User/updateUser";
+import uploadUserPhoto from "@/firebase/firestore/User/uploadUserPhoto";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -12,25 +13,39 @@ const SettingsForm = ({ user }) => {
   const [favoriteQuote, setFavoriteQuote] = useState(user.favoriteQuote || "");
   const [error, setError] = useState("");
   const [uploading, setUploading] = useState(false);
-  const [imageFile, setImageFile] = useState();
+  const [imageFile, setImageFile] = useState(user.photo);
   const router = useRouter();
 
-  const handleUploadPhoto = (e) => {
+  const handleUploadPhoto = async (e) => {
     const file = e.target.files[0];
-    if (file.size > 1000000) {
-      setError("File size too large!");
-      console.log(file.size);
-      console.log("error");
-    } else {
-      setImageFile(file);
-      console.log(file);
+
+    try {
+      setError("");
+      setUploading(true);
+      const url = await uploadUserPhoto(user.id, file);
+      setImageFile(url);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      e.target.value = null;
+      setUploading(false);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await updateUser(user.id, { firstName, lastName, favoriteQuote });
-    router.push(`/${user.id}`);
+    try {
+      setError("");
+      await updateUser(user.id, {
+        firstName,
+        lastName,
+        favoriteQuote,
+        photo: imageFile,
+      });
+      router.push(`/${user.id}`);
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   return (
@@ -82,7 +97,7 @@ const SettingsForm = ({ user }) => {
           </label>
           <div className="flex flex-col sm:mt-6">
             <Image
-              src={user.photo}
+              src={imageFile}
               className="w-40 h-40 rounded-full sm:w-50 sm:h-50"
               height={200}
               width={200}
@@ -98,7 +113,7 @@ const SettingsForm = ({ user }) => {
             />
             <label
               htmlFor="photo-upload"
-              className="cursor-pointer font-semibold text-sm min-w-fit text-primary mt-4 p-2 bg-secondary rounded-md border border-slate-400 hover:border-slate-600 hover:bg-highlight"
+              className="cursor-pointer font-semibold text-sm text-center min-w-fit text-primary mt-4 p-2 bg-secondary rounded-md border border-slate-400 hover:border-slate-600 hover:bg-highlight"
             >
               {uploading ? "Uploading..." : "Upload profile picture"}
             </label>
@@ -120,6 +135,9 @@ const SettingsForm = ({ user }) => {
           rows={8}
         />
       </div>
+      {error && (
+        <p className="text-center text-sm mt-5 text-red-500">Error: {error}</p>
+      )}
       <div className="flex justify-center align-center gap-5 mt-5 sm:justify-end">
         <button
           className="w-1/4 min-w-[84px] text-sm bg-buttonPrimary hover:bg-buttonSecondary text-white 
