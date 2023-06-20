@@ -1,4 +1,5 @@
 import getAllQuotes from "@/firebase/firestore/Quote/getAllQuotes";
+import QuoteCard from "./QuoteCard";
 
 const Home = async () => {
   const quotesData = await getAllQuotes();
@@ -9,7 +10,7 @@ const Home = async () => {
       </h1>
       <ul>
         {quotesData.map((q) => (
-          <li key={q.id}>{q.quote}</li>
+          <QuoteCard quote={q} />
         ))}
       </ul>
     </div>
