@@ -18,7 +18,7 @@ const Navbar = () => {
             Home
           </Link>
           <Link
-            href="add-quote"
+            href="/add-quote"
             className="bg-buttonPrimary hover:bg-buttonSecondary text-white font-bold py-2 px-4 rounded text-sm sm:text-base"
           >
             Create Quote
