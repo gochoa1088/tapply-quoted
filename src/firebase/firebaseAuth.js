@@ -7,32 +7,38 @@ import {
 } from "firebase/auth";
 
 import { auth } from "./firebase.config";
+import addUser from "./firestore/User/addUser";
 
 export const signInWithGoogle = async () =>
   signInWithPopup(auth, new GoogleAuthProvider());
 
-export const signUpWithEmailAndPassword = async (email, password) => {
-  let result = null;
-  let error = null;
+export const signUpWithEmailAndPassword = async (
+  email,
+  username,
+  password,
+  confirmPassword
+) => {
   try {
-    result = await createUserWithEmailAndPassword(auth, email, password);
+    if (password !== confirmPassword) {
+      throw new Error("Passwords do not match.");
+    }
+    const { user } = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    await addUser(user.uid, { email, username });
   } catch (e) {
-    error = e;
+    throw e;
   }
-
-  return { result, error };
 };
 
 export const loginWithEmaiAndPassword = async (email, password) => {
-  let result = null;
-  let error = null;
   try {
-    result = await signInWithEmailAndPassword(auth, email, password);
+    await signInWithEmailAndPassword(auth, email, password);
   } catch (e) {
-    error = e;
+    throw e;
   }
-
-  return { result, error };
 };
 
 export const logout = () => signOut(auth);

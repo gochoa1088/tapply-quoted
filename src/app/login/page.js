@@ -18,7 +18,6 @@ const Login = () => {
     if (error) {
       return console.log(error);
     }
-    console.log(result);
     return router.push("/home");
   };
 

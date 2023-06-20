@@ -10,23 +10,24 @@ const Signup = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState(null);
   const router = useRouter();
 
   const handleSignup = async (event) => {
     event.preventDefault();
+    try {
+      setError(null);
+      await signUpWithEmailAndPassword(
+        email,
+        username,
+        password,
+        confirmPassword
+      );
 
-    const { result, error } = await signUpWithEmailAndPassword(
-      email,
-      username,
-      password,
-      confirmPassword
-    );
-
-    if (error) {
-      return console.log(error);
+      return router.push("/home");
+    } catch (error) {
+      setError(error.message);
     }
-    console.log(result);
-    return router.push("/home");
   };
 
   return (
@@ -40,6 +41,7 @@ const Signup = () => {
       >
         <div className="flex flex-col gap-2 w-full items-center">
           <input
+            onChange={(e) => setEmail(e.target.value)}
             className="border rounded w-full py-2 px-3 leading-tight sm:w-1/2 focus:outline-slate-400"
             id="email"
             type="email"
@@ -47,6 +49,7 @@ const Signup = () => {
             required
           />
           <input
+            onChange={(e) => setUsername(e.target.value)}
             className="border rounded w-full py-2 px-3 leading-tight sm:w-1/2 focus:outline-slate-400"
             id="username"
             type="text"
@@ -54,6 +57,7 @@ const Signup = () => {
             required
           />
           <input
+            onChange={(e) => setPassword(e.target.value)}
             className="border rounded w-full py-2 px-3 leading-tight sm:w-1/2 focus:outline-slate-400"
             id="password"
             type="password"
@@ -61,6 +65,7 @@ const Signup = () => {
             required
           />
           <input
+            onChange={(e) => setConfirmPassword(e.target.value)}
             className="border rounded w-full py-2 px-3 leading-tight sm:w-1/2 focus:outline-slate-400"
             id="confirmPassword"
             type="password"
@@ -68,8 +73,9 @@ const Signup = () => {
             required
           />
         </div>
+        {error && <p className="text-sm mt-2 text-red-500">{error}</p>}
         <button className="w-full bg-slate-200 py-2 px-3 rounded-lg border border-slate-500 mt-8 sm:w-1/2 hover:bg-slate-300">
-          Log in
+          Sign up
         </button>
       </form>
       <div className="flex flex-col items-center">
