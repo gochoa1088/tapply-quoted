@@ -1,6 +1,7 @@
 "use client";
 
 import { useAuth } from "@/context/AuthContext";
+import addQuote from "@/firebase/firestore/Quote/addQuote";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -34,6 +35,13 @@ const CreateQuoteForm = () => {
     e.preventDefault();
     try {
       setError("");
+      await addQuote({
+        quote,
+        author,
+        photo: imageFile,
+        userId: authedUser.uid,
+      });
+      router.push("/home");
     } catch (error) {
       setError(error.message);
     }
