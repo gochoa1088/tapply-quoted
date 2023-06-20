@@ -1,6 +1,7 @@
 "use client";
 
 import updateUser from "@/firebase/firestore/User/updateUser";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -9,7 +10,22 @@ const SettingsForm = ({ user }) => {
   const [firstName, setFirstName] = useState(user.firstName || "");
   const [lastName, setLastName] = useState(user.lastName || "");
   const [favoriteQuote, setFavoriteQuote] = useState(user.favoriteQuote || "");
+  const [error, setError] = useState("");
+  const [uploading, setUploading] = useState(false);
+  const [imageFile, setImageFile] = useState();
   const router = useRouter();
+
+  const handleUploadPhoto = (e) => {
+    const file = e.target.files[0];
+    if (file.size > 1000000) {
+      setError("File size too large!");
+      console.log(file.size);
+      console.log("error");
+    } else {
+      setImageFile(file);
+      console.log(file);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,13 +35,13 @@ const SettingsForm = ({ user }) => {
 
   return (
     <form
-      className="flex flex-col self-center w-full rounded-sm max-w-6xl sm:max-h-full"
+      className="flex flex-col w-full rounded-sm max-w-6xl sm:max-h-full"
       onSubmit={handleSubmit}
     >
       <h1 className="text-headingColor font-semibold pb-2 mb-4 border-b border-borderprimary">
-        Public profile
+        Public profile settings
       </h1>
-      <div className="flex flex-col-reverse justify-between sm:flex-row">
+      <div className="flex flex-col-reverse sm:flex-row">
         <div className="flex flex-col w-full sm:w-1/2 gap-2 sm:gap-4">
           <div>
             <label
@@ -64,14 +80,28 @@ const SettingsForm = ({ user }) => {
           <label className="block font-bold self-start text-headingColor mb-4 text-sm sm:ml-16 sm:mb-2">
             Profile picture
           </label>
-          <div className="relative w-40 h-40 rounded-full sm:w-56 sm:h-56 sm:mt-6">
-            <img
+          <div className="flex flex-col sm:mt-6">
+            <Image
               src={user.photo}
-              className="w-40 h-40 rounded-full sm:w-56 sm:h-56"
-              height={224}
-              width={224}
+              className="w-40 h-40 rounded-full sm:w-50 sm:h-50"
+              height={200}
+              width={200}
               alt={user.username}
             />
+            <input
+              id="photo-upload"
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={handleUploadPhoto}
+              disabled={uploading}
+            />
+            <label
+              htmlFor="photo-upload"
+              className="cursor-pointer font-semibold text-sm min-w-fit text-primary mt-4 p-2 bg-secondary rounded-md border border-slate-400 hover:border-slate-600 hover:bg-highlight"
+            >
+              {uploading ? "Uploading..." : "Upload profile picture"}
+            </label>
           </div>
         </div>
       </div>
