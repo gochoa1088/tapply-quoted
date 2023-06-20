@@ -6,7 +6,7 @@ export default function Home() {
     <main className="flex flex-col min-h-screen max-w-2xl items-center justify-between mx-auto p-6">
       <header className="mt-4">
         <h1 className="text-3xl">
-          Welcome to <span className="font-bold text-slate-400">Quoted</span>!
+          Welcome to <span className="font-bold">Quoted</span>!
         </h1>
       </header>
 
@@ -37,14 +37,14 @@ export default function Home() {
       </div>
       <div className="flex flex-col gap-2 mb-8 text-center">
         <Link
-          className="border rounded-lg px-2 py-1 hover:bg-slate-800"
+          className="border-2 rounded-lg px-2 py-1 hover:bg-slate-300"
           href="/login"
         >
           Login to your account
         </Link>
         <p>or</p>
         <Link
-          className="border rounded-lg px-2 py-1 hover:bg-slate-800"
+          className="border-2 rounded-lg px-2 py-1 hover:bg-slate-300"
           href="/signup"
         >
           Create an account
