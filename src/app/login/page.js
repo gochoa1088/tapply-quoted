@@ -1,16 +1,37 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 
 const Login = () => {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const router = useRouter();
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+
+    const { result, error } = await signUp(email, password);
+
+    if (error) {
+      return console.log(error);
+    }
+    console.log(result);
+    return router.push("/home");
+  };
+
   return (
     <main className="flex flex-col min-h-screen max-w-2xl items-center justify-between mx-auto p-6">
       <h1 className="text-4xl my-10">
         Sign in to <span className="font-semibold">Quoted</span>
       </h1>
-      <form className="flex flex-col w-full items-center">
+      <form
+        onSubmit={handleLogin}
+        className="flex flex-col w-full items-center"
+      >
         <div className="flex flex-col gap-2 w-full items-center">
           <input
+            onChange={(e) => setEmail(e.target.value)}
             className="border rounded w-full py-2 px-3 leading-tight sm:w-1/2 focus:outline-slate-400"
             id="email"
             type="email"
@@ -18,6 +39,7 @@ const Login = () => {
             required
           />
           <input
+            onChange={(e) => setPassword(e.target.value)}
             className="border rounded w-full py-2 px-3 leading-tight sm:w-1/2 focus:outline-slate-400"
             id="password"
             type="password"
