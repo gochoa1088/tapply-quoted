@@ -72,7 +72,7 @@ const CreateQuoteForm = () => {
         </div>
         <div className="flex flex-col items-center w-full mb-8 sm:w-1/2 sm:ml-12 sm:mb-0">
           <label className="block font-bold self-start text-headingColor mb-4 text-sm sm:ml-16 sm:mb-2">
-            Profile picture
+            Author photo
           </label>
           <div className="flex flex-col sm:mt-6">
             <Image
@@ -94,7 +94,7 @@ const CreateQuoteForm = () => {
               htmlFor="photo-upload"
               className="cursor-pointer font-semibold text-sm text-center min-w-fit text-primary mt-4 p-2 bg-secondary rounded-md border border-slate-400 hover:border-slate-600 hover:bg-highlight"
             >
-              {uploading ? "Uploading..." : "Upload profile picture"}
+              {uploading ? "Uploading..." : "Upload author photo"}
             </label>
           </div>
         </div>
@@ -122,7 +122,7 @@ const CreateQuoteForm = () => {
           className="w-1/4 min-w-[84px] text-sm bg-buttonPrimary hover:bg-buttonSecondary text-white 
   font-bold py-2 px-4 rounded-md focus:shadow-outline sm:w-1/6 sm:text-base"
         >
-          Save
+          Add
         </button>
         <Link
           href="/home"
