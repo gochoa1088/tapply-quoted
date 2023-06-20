@@ -12,8 +12,8 @@ export default function Home() {
 
       <p className="italic text-xs text-center sm:text-lg">
         “When you give joy to other people, you get more joy in return. You
-        should give a good thought to happiness that you can give out.
-        <span className="font-semibold"> — Eleanor Roosevelt</span>
+        should give a good thought to happiness that you can give out."
+        <span className="inline-block font-semibold"> — Eleanor Roosevelt</span>
       </p>
       <div className="flex flex-col gap-3 sm:gap-2">
         <div className="relative h-20 overflow-clip rounded-lg sm:h-28">
