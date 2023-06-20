@@ -18,13 +18,13 @@ const AuthenticatedLayout = ({ children }) => {
   }, [authedUser]);
 
   return loading ? (
-    <main className="flex flex-col min-h-screen max-w-2xl items-center justify-between mx-auto p-6">
+    <main className="flex flex-col max-w-2xl items-center justify-between mx-auto p-6">
       <div>Loading...</div>
     </main>
   ) : (
     <>
       <Navbar />
-      <main className="flex flex-col min-h-screen max-w-2xl items-center justify-between mx-auto p-6">
+      <main className="flex flex-col max-w-2xl items-center justify-between mx-auto p-6">
         {children}
       </main>
     </>

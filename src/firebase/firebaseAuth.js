@@ -25,7 +25,7 @@ export const signUpWithEmailAndPassword = async (
       email,
       password
     );
-    await addUser(user.uid, { email, username });
+    await addUser(user.uid, { email, username, id: user.uid });
   } catch (e) {
     throw e;
   }
@@ -46,6 +46,7 @@ export const loginInWithGoogle = async () => {
     await addUser(user.uid, {
       email: user.email,
       username: user.email.substring(0, user.email.indexOf("@")),
+      id: user.uid,
       photo: user.photoURL,
     });
   }

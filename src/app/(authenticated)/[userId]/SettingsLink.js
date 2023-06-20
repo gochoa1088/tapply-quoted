@@ -8,7 +8,7 @@ const SettingsLink = ({ userId }) => {
   return (
     isSessionedUserPage && (
       <Link
-        className="w-2/3 text-center font-semibold text-sm p-2 bg-primary rounded-md text-primary
+        className="w-full text-center font-semibold text-sm p-2 bg-primary rounded-md text-primary
   border border-slate-400 hover:border-slate-600 hover:bg-highlight sm:w-1/3"
         href={`/${userId}/settings`}
       >
