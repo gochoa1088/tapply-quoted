@@ -1,17 +1,19 @@
+"use client";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import { loginWithEmaiAndPassword } from "@/firebase/firebaseAuth";
 
 const Login = () => {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const router = useRouter();
 
   const handleLogin = async (event) => {
     event.preventDefault();
 
-    const { result, error } = await signUp(email, password);
+    const { result, error } = await loginWithEmaiAndPassword(email, password);
 
     if (error) {
       return console.log(error);

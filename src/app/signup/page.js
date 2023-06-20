@@ -1,14 +1,43 @@
+"use client";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/router";
+import { signUpWithEmailAndPassword } from "@/firebase/firebaseAuth";
 
 const Signup = () => {
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const router = useRouter();
+
+  const handleSignup = async (event) => {
+    event.preventDefault();
+
+    const { result, error } = await signUpWithEmailAndPassword(
+      email,
+      username,
+      password,
+      confirmPassword
+    );
+
+    if (error) {
+      return console.log(error);
+    }
+    console.log(result);
+    return router.push("/home");
+  };
+
   return (
     <main className="flex flex-col min-h-screen max-w-2xl items-center justify-between mx-auto p-6">
       <h1 className="text-4xl my-10">
         Sign up for <span className="font-semibold">Quoted</span>
       </h1>
-      <form className="flex flex-col w-full items-center">
+      <form
+        onSubmit={handleSignup}
+        className="flex flex-col w-full items-center"
+      >
         <div className="flex flex-col gap-2 w-full items-center">
           <input
             className="border rounded w-full py-2 px-3 leading-tight sm:w-1/2 focus:outline-slate-400"
