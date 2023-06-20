@@ -8,9 +8,7 @@ import {
 
 import { auth } from "./firebase.config";
 import addUser from "./firestore/User/addUser";
-
-export const signInWithGoogle = async () =>
-  signInWithPopup(auth, new GoogleAuthProvider());
+import getUser from "./firestore/User/getUser";
 
 export const signUpWithEmailAndPassword = async (
   email,
@@ -38,6 +36,18 @@ export const loginWithEmaiAndPassword = async (email, password) => {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (e) {
     throw e;
+  }
+};
+
+export const loginInWithGoogle = async () => {
+  const { user } = await signInWithPopup(auth, new GoogleAuthProvider());
+  const userExists = await getUser(user.uid);
+  if (!userExists) {
+    await addUser(user.uid, {
+      email: user.email,
+      username: user.email.substring(0, user.email.indexOf("@")),
+      photo: user.photoURL,
+    });
   }
 };
 

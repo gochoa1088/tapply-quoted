@@ -3,7 +3,10 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { loginWithEmaiAndPassword } from "@/firebase/firebaseAuth";
+import {
+  loginInWithGoogle,
+  loginWithEmaiAndPassword,
+} from "@/firebase/firebaseAuth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -15,6 +18,15 @@ const Login = () => {
     event.preventDefault();
     try {
       await loginWithEmaiAndPassword(email, password);
+      return router.push("/home");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      await loginInWithGoogle();
       return router.push("/home");
     } catch (error) {
       setError(error.message);
@@ -55,7 +67,10 @@ const Login = () => {
       </form>
       <div className="flex flex-col items-center">
         <p className="font-semibold">-or-</p>
-        <button className="flex bg-blue-200 py-2 px-3 rounded-lg border border-slate-500 mt-4 hover:bg-blue-300">
+        <button
+          onClick={handleGoogleLogin}
+          className="flex bg-blue-200 py-2 px-3 rounded-lg border border-slate-500 mt-4 hover:bg-blue-300"
+        >
           <Image
             src="/googlelogo.png"
             height={20}

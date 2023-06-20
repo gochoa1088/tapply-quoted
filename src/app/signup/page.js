@@ -30,6 +30,15 @@ const Signup = () => {
     }
   };
 
+  const handleGoogleLogin = async () => {
+    try {
+      await loginInWithGoogle();
+      return router.push("/home");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return (
     <main className="flex flex-col min-h-screen max-w-2xl items-center justify-between mx-auto p-6">
       <h1 className="text-4xl my-10">
@@ -80,7 +89,10 @@ const Signup = () => {
       </form>
       <div className="flex flex-col items-center">
         <p className="font-semibold">-or-</p>
-        <button className="flex bg-blue-200 py-2 px-3 rounded-lg border border-slate-500 mt-4 hover:bg-blue-300">
+        <button
+          onClick={handleGoogleLogin}
+          className="flex bg-blue-200 py-2 px-3 rounded-lg border border-slate-500 mt-4 hover:bg-blue-300"
+        >
           <Image
             src="/googlelogo.png"
             height={20}
