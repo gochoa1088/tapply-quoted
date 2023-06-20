@@ -37,14 +37,14 @@ export default function Home() {
       </div>
       <div className="flex flex-col gap-2 mb-8 text-center">
         <Link
-          className="border-2 rounded-lg px-2 py-1 hover:bg-slate-300"
+          className="border-2 border-blue-400 rounded-lg px-2 py-1 hover:bg-blue-200"
           href="/login"
         >
           Login to your account
         </Link>
         <p>or</p>
         <Link
-          className="border-2 rounded-lg px-2 py-1 hover:bg-slate-300"
+          className="border-2 border-blue-400 rounded-lg px-2 py-1 hover:bg-blue-200"
           href="/signup"
         >
           Create an account
