@@ -13,23 +13,23 @@ export default function Home() {
       <p className="italic text-xs text-center sm:text-lg">
         “When you give joy to other people, you get more joy in return. You
         should give a good thought to happiness that you can give out.
-        <span className="text-gray-500"> — Eleanor Roosevelt</span>
+        <span className="font-semibold"> — Eleanor Roosevelt</span>
       </p>
       <div className="flex flex-col gap-3 sm:gap-2">
         <div className="relative h-20 overflow-clip rounded-lg sm:h-28">
-          <span className="absolute text-2xl font-bold text-slate-900 right-2 top-2">
+          <span className="absolute text-2xl font-bold right-2 top-2">
             Find
           </span>
           <Image src="/ae.jpg" width={500} height={100} alt="einstein" />
         </div>
         <div className="relative h-20 overflow-clip rounded-lg sm:h-28">
-          <span className="absolute text-2xl font-bold text-slate-900 left-14 top-2">
+          <span className="absolute text-2xl font-bold left-14 top-2">
             Share
           </span>
           <Image src="/frida.jpg" width={500} height={100} alt="frida" />
         </div>
         <div className="relative h-20 overflow-clip rounded-lg sm:h-28">
-          <span className="absolute text-2xl font-bold text-slate-900 right-2 top-2">
+          <span className="absolute text-2xl font-bold right-2 top-2">
             Like
           </span>
           <Image src="/gandhi.jpg" width={500} height={100} alt="gandhi" />
