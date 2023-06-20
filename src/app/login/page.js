@@ -35,7 +35,7 @@ const Login = () => {
 
   return (
     <main className="flex flex-col min-h-screen max-w-2xl items-center justify-between mx-auto p-6">
-      <h1 className="text-4xl my-10">
+      <h1 className="my-10">
         Sign in to <span className="font-semibold">Quoted</span>
       </h1>
       <form

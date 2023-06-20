@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main className="flex flex-col min-h-screen max-w-2xl items-center justify-between mx-auto p-6">
       <header className="mt-4">
-        <h1 className="text-3xl">
+        <h1>
           Welcome to <span className="font-bold">Quoted</span>!
         </h1>
       </header>
