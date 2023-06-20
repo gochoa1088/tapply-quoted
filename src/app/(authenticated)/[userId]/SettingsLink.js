@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const SettingsLink = ({ userId }) => {
   const { authedUser } = useAuth();
-  const isSessionedUserPage = authedUser.uid === userId;
+  const isSessionedUserPage = authedUser?.uid === userId;
   return (
     isSessionedUserPage && (
       <Link
