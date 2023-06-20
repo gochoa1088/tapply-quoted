@@ -1,5 +1,3 @@
-"use client";
-import { Button, TextField } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
