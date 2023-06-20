@@ -1,9 +1,9 @@
-import { Timestamp, addDoc, collection } from "firebase/firestore";
+import { Timestamp, setDoc, doc } from "firebase/firestore";
 import { firestore } from "../../firebase.config";
 
-export default async function addQuote(data) {
+export default async function addQuote(quoteId, data) {
   try {
-    await addDoc(collection(firestore, "quotes"), {
+    await setDoc(doc(firestore, "quotes", quoteId), {
       createdAt: Timestamp.fromDate(new Date()),
       likes: 0,
       ...data,

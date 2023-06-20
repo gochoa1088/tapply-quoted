@@ -2,10 +2,13 @@
 
 import { useAuth } from "@/context/AuthContext";
 import addQuote from "@/firebase/firestore/Quote/addQuote";
+import uploadQuotePhoto from "@/firebase/firestore/Quote/uploadQuotePhoto";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { v4 } from "uuid";
+const quoteId = v4();
 
 const CreateQuoteForm = () => {
   const { authedUser } = useAuth();
@@ -18,11 +21,10 @@ const CreateQuoteForm = () => {
 
   const handleUploadPhoto = async (e) => {
     const file = e.target.files[0];
-
     try {
       setError("");
       setUploading(true);
-      const url = await uploadQuotePhoto(user.id, file);
+      const url = await uploadQuotePhoto(quoteId, file);
       setImageFile(url);
     } catch (error) {
       setError(error.message);
@@ -35,7 +37,7 @@ const CreateQuoteForm = () => {
     e.preventDefault();
     try {
       setError("");
-      await addQuote({
+      await addQuote(quoteId, {
         quote,
         author,
         photo: imageFile,
