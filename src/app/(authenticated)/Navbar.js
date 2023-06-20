@@ -6,26 +6,35 @@ import React from "react";
 
 const Navbar = () => {
   const { authedUser } = useAuth();
-  const { uid } = authedUser;
+
+  const handleLogout = async () => {
+    await logout();
+  };
   return (
-    <nav className="bg-gray-800 px-4 py-3">
+    <nav className="bg-secondary px-4 py-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
-          <Link href="/home" className="text-white font-bold text-lg mr-4">
+          <Link href="/home" className="text-primary font-bold sm:text-lg mr-4">
             Home
           </Link>
           <Link
             href="add-quote"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-buttonPrimary hover:bg-buttonSecondary text-white font-bold py-2 px-4 rounded text-sm sm:text-base"
           >
             Create Quote
           </Link>
         </div>
         <div className="flex items-center">
-          <Link href={`/${uid}`} className="text-white mr-4">
+          <Link
+            href={`/${authedUser?.uid}`}
+            className="text-primary mr-4 text-sm sm:text-base"
+          >
             Profile
           </Link>
-          <button onClick={logout} className="text-white mr-4">
+          <button
+            onClick={handleLogout}
+            className="text-primary mr-2 text-sm sm:text-base"
+          >
             Logout
           </button>
         </div>

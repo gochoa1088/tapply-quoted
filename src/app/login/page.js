@@ -36,7 +36,7 @@ const Login = () => {
   return (
     <main className="flex flex-col min-h-screen max-w-2xl items-center justify-between mx-auto p-6">
       <h1 className="my-10">
-        Sign in to <span className="font-semibold">Quoted</span>
+        Sign in to <span className="font-semibold text-secondary">Quoted</span>
       </h1>
       <form
         onSubmit={handleLogin}
@@ -61,7 +61,7 @@ const Login = () => {
           />
         </div>
         {error && <p className="text-sm mt-2 text-red-500">{error}</p>}
-        <button className="w-full bg-slate-200 py-2 px-3 rounded-lg border border-slate-500 mt-8 sm:w-1/2 hover:bg-slate-300">
+        <button className="w-full bg-buttonPrimary text-white py-2 px-3 rounded-lg mt-8 sm:w-1/2 hover:bg-buttonSecondary">
           Log in
         </button>
       </form>
@@ -69,7 +69,7 @@ const Login = () => {
         <p className="font-semibold">-or-</p>
         <button
           onClick={handleGoogleLogin}
-          className="flex bg-blue-200 py-2 px-3 rounded-lg border border-slate-500 mt-4 hover:bg-blue-300"
+          className="flex bg-buttonPrimary text-white py-2 px-3 rounded-lg mt-4 hover:bg-buttonSecondary"
         >
           <Image
             src="/googlelogo.png"
