@@ -1,5 +1,6 @@
 "use client";
 import { useAuth } from "@/context/AuthContext";
+import { logout } from "@/firebase/firebaseAuth";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -16,7 +17,14 @@ const Home = () => {
     }
   }, [user]);
 
-  return loading ? <div>Loading...</div> : <div>Home</div>;
+  return loading ? (
+    <div>Loading...</div>
+  ) : (
+    <div className="flex flex-col">
+      Home
+      <button onClick={logout}>logout</button>
+    </div>
+  );
 };
 
 export default Home;

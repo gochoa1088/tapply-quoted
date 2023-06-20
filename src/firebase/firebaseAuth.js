@@ -41,4 +41,4 @@ export const loginWithEmaiAndPassword = async (email, password) => {
   }
 };
 
-export const logout = () => signOut(auth);
+export const logout = async () => await signOut(auth);

@@ -8,17 +8,17 @@ import { loginWithEmaiAndPassword } from "@/firebase/firebaseAuth";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
   const router = useRouter();
 
   const handleLogin = async (event) => {
     event.preventDefault();
-
-    const { result, error } = await loginWithEmaiAndPassword(email, password);
-
-    if (error) {
-      return console.log(error);
+    try {
+      await loginWithEmaiAndPassword(email, password);
+      return router.push("/home");
+    } catch (error) {
+      setError(error.message);
     }
-    return router.push("/home");
   };
 
   return (
@@ -48,6 +48,7 @@ const Login = () => {
             required
           />
         </div>
+        {error && <p className="text-sm mt-2 text-red-500">{error}</p>}
         <button className="w-full bg-slate-200 py-2 px-3 rounded-lg border border-slate-500 mt-8 sm:w-1/2 hover:bg-slate-300">
           Log in
         </button>
