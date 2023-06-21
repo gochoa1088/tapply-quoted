@@ -1,5 +1,4 @@
 import getAllQuotes from "@/firebase/firestore/Quote/getAllQuotes";
-import QuoteCard from "./QuoteCard";
 import QuotesList from "./QuotesList";
 
 const Quotes = async () => {

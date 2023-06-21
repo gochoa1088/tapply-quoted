@@ -1,4 +1,5 @@
 "use client";
+import QuoteCard from "./QuoteCard";
 
 const QuotesList = ({ quotesData }) => {
   console.log(quotesData);
