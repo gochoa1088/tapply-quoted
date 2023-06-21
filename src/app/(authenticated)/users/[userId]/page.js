@@ -2,6 +2,15 @@ import getUser from "@/firebase/firestore/User/getUser";
 import Image from "next/image";
 import React from "react";
 import SettingsLink from "./SettingsLink";
+import getAllUsers from "@/firebase/firestore/User/getAllUsers";
+
+export async function generateStaticParams() {
+  const users = getAllUsers();
+
+  return users.map((user) => ({
+    userId: user.id,
+  }));
+}
 
 const Profile = async ({ params: { userId } }) => {
   const userData = await getUser(userId);
