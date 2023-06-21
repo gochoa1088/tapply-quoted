@@ -1,7 +1,7 @@
 import getAllQuotes from "@/firebase/firestore/Quote/getAllQuotes";
 import QuotesList from "./QuotesList";
 
-export const revalidate = 30;
+// export const revalidate = 30;
 
 const Quotes = async () => {
   const quotesData = await getAllQuotes();
