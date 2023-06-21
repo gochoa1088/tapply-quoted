@@ -1,7 +1,7 @@
 import getAllQuotes from "@/firebase/firestore/Quote/getAllQuotes";
 import QuoteCard from "./QuoteCard";
 
-const Home = async () => {
+const Quotes = async () => {
   const quotesData = await getAllQuotes();
   return (
     <div className="flex flex-col w-full">
@@ -17,4 +17,4 @@ const Home = async () => {
   );
 };
 
-export default Home;
+export default Quotes;

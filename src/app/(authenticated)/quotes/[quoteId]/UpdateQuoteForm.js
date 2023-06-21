@@ -1,30 +1,28 @@
 "use client";
 
-import updateUser from "@/firebase/firestore/User/updateUser";
-import uploadUserPhoto from "@/firebase/firestore/User/uploadUserPhoto";
+import updateQuote from "@/firebase/firestore/Quote/updateQuote";
+import uploadQuotePhoto from "@/firebase/firestore/Quote/uploadQuotePhoto";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const SettingsForm = ({ user }) => {
-  const [firstName, setFirstName] = useState(user.firstName || "");
-  const [lastName, setLastName] = useState(user.lastName || "");
-  const [favoriteQuote, setFavoriteQuote] = useState(user.favoriteQuote || "");
+const UpdateQuoteForm = ({ quoteData }) => {
+  const [quote, setQuote] = useState(quoteData.quote || "");
+  const [author, setAuthor] = useState(quoteData.author || "");
   const [imageFile, setImageFile] = useState(
-    user.photo || "/default-photo.jpg"
+    quoteData.photo || "/default-photo.jpg"
   );
-  const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
+  const [uploading, setUploading] = useState(false);
   const router = useRouter();
 
   const handleUploadPhoto = async (e) => {
     const file = e.target.files[0];
-
     try {
       setError("");
       setUploading(true);
-      const url = await uploadUserPhoto(user.id, file);
+      const url = await uploadQuotePhoto(quoteData.id, file);
       setImageFile(url);
     } catch (error) {
       setError(error.message);
@@ -33,23 +31,20 @@ const SettingsForm = ({ user }) => {
       setUploading(false);
     }
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       setError("");
-      await updateUser(user.id, {
-        firstName,
-        lastName,
-        favoriteQuote,
+      await updateQuote(quoteData.id, {
+        quote,
+        author,
         photo: imageFile,
       });
-      router.push(`/users/${user.id}`);
+      router.push("/quotes");
     } catch (error) {
       setError(error.message);
     }
   };
-
   return (
     <form
       className="flex flex-col w-full rounded-sm max-w-6xl sm:max-h-full"
@@ -57,42 +52,24 @@ const SettingsForm = ({ user }) => {
     >
       <div className="flex flex-col-reverse sm:flex-row">
         <div className="flex flex-col w-full sm:w-1/2 gap-2 sm:gap-4">
-          <div>
-            <label
-              className="block font-bold text-headingColor mb-2 text-sm"
-              htmlFor="firstName"
-            >
-              First name
-            </label>
-            <input
-              className="border rounded w-full py-2 px-3 text-primary leading-tight focus:outline-slate-400"
-              id="firstName"
-              type="text"
-              onChange={(e) => setFirstName(e.target.value)}
-              placeholder="Enter first name"
-              value={firstName}
-            />
-          </div>
-          <div>
-            <label
-              className="block font-bold text-headingColor mb-2 text-sm"
-              htmlFor="firstName"
-            >
-              Last name
-            </label>
-            <input
-              className="border rounded w-full py-2 px-3 text-primary leading-tight focus:outline-slate-400"
-              id="lastName"
-              type="text"
-              onChange={(e) => setLastName(e.target.value)}
-              placeholder="Enter last name"
-              value={lastName}
-            />
-          </div>
+          <label
+            className="block font-bold text-headingColor mb-2 text-sm"
+            htmlFor="author"
+          >
+            Author
+          </label>
+          <input
+            className="border rounded w-full py-2 px-3 text-primary leading-tight focus:outline-slate-400"
+            id="author"
+            type="text"
+            onChange={(e) => setAuthor(e.target.value)}
+            placeholder="Enter author name"
+            value={author}
+          />
         </div>
         <div className="flex flex-col items-center w-full mb-8 sm:w-1/2 sm:ml-12 sm:mb-0">
           <label className="block font-bold self-start text-headingColor mb-4 text-sm sm:ml-16 sm:mb-2">
-            Profile picture
+            Author photo
           </label>
           <div className="flex flex-col sm:mt-6">
             <Image
@@ -100,7 +77,7 @@ const SettingsForm = ({ user }) => {
               className="w-40 h-40 rounded-full sm:w-50 sm:h-50"
               height={200}
               width={200}
-              alt={user.username}
+              alt="author"
             />
             <input
               id="photo-upload"
@@ -114,7 +91,7 @@ const SettingsForm = ({ user }) => {
               htmlFor="photo-upload"
               className="cursor-pointer font-semibold text-sm text-center min-w-fit text-primary mt-4 p-2 bg-secondary rounded-md border border-slate-400 hover:border-slate-600 hover:bg-highlight"
             >
-              {uploading ? "Uploading..." : "Upload profile picture"}
+              {uploading ? "Uploading..." : "Upload author photo"}
             </label>
           </div>
         </div>
@@ -122,15 +99,15 @@ const SettingsForm = ({ user }) => {
       <div className="flex flex-col mt-2">
         <label
           className="block font-bold text-headingColor mb-2 text-sm"
-          htmlFor="favoriteQuote"
+          htmlFor="quote"
         >
-          Favorite quote
+          Quote
         </label>
         <textarea
           className="border rounded w-full py-2 px-3 text-primary leading-tight focus:outline-slate-400"
-          placeholder="Enter your favorite quote"
-          onChange={(e) => setFavoriteQuote(e.target.value)}
-          value={favoriteQuote}
+          placeholder="Enter quote"
+          onChange={(e) => setQuote(e.target.value)}
+          value={quote}
           rows={8}
         />
       </div>
@@ -145,7 +122,7 @@ const SettingsForm = ({ user }) => {
           Save
         </button>
         <Link
-          href={`/users/${user.id}`}
+          href="/quotes"
           className="w-1/4 min-w-[84px] no-underline text-sm text-center hover:bg-highlight border-2 
   text-primary font-bold py-2 px-4 rounded-md focus:shadow-outline sm:w-1/6 sm:text-base"
         >
@@ -156,4 +133,4 @@ const SettingsForm = ({ user }) => {
   );
 };
 
-export default SettingsForm;
+export default UpdateQuoteForm;

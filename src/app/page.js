@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main className="flex flex-col min-h-screen max-w-2xl items-center justify-between mx-auto p-6">
       <header className="mt-4">
-        <h1>
+        <h1 className="text-3xl sm:text-4xl">
           Welcome to <span className="font-bold text-secondary">Quoted</span>!
         </h1>
       </header>
@@ -35,16 +35,16 @@ export default function Home() {
           <Image src="/gandhi.jpg" width={500} height={100} alt="gandhi" />
         </div>
       </div>
-      <div className="flex flex-col gap-2 mb-8 text-center">
+      <div className="flex flex-col w-full gap-2 mb-8 items-center text-center">
         <Link
-          className="bg-buttonPrimary text-white rounded-lg px-2 py-1 hover:bg-buttonSecondary"
+          className="bg-buttonPrimary w-full text-white text-lg rounded-lg px-2 py-1 hover:bg-buttonSecondary sm:w-1/2"
           href="/login"
         >
-          Login
+          Proceed to login
         </Link>
         <p className="font-semibold">or</p>
         <Link
-          className="bg-buttonPrimary text-white rounded-lg px-2 py-1 hover:bg-buttonSecondary"
+          className="bg-buttonPrimary w-full text-white text-lg rounded-lg px-2 py-1 hover:bg-buttonSecondary sm:w-1/2"
           href="/signup"
         >
           Create an account

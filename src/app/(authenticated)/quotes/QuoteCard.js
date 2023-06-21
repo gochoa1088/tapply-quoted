@@ -59,17 +59,16 @@ const QuoteCard = ({ quote }) => {
             Upvote
           </button>
         </div>
-      </div>
-      {quote.userId === authedUser.uid && (
-        <div className="absolute bottom-4 right-4">
+        {quote.userId === authedUser?.uid && (
           <Link
             href={`/quotes/${quote.id}`}
-            className="underline text-sm text-blue-500"
+            className="w-fit self-end no-underline text-xs text-center hover:bg-highlight border-2 
+  text-primary font-bold py-2 px-4 mt-4 rounded-md focus:shadow-outline"
           >
-            Edit quote
+            Edit/Delete quote
           </Link>
-        </div>
-      )}
+        )}
+      </div>
     </li>
   );
 };
