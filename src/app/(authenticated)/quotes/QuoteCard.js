@@ -59,7 +59,7 @@ const QuoteCard = ({ quote }) => {
             Upvote
           </button>
         </div>
-        {quote.userId === authedUser.uid && (
+        {quote.userId === authedUser?.uid && (
           <Link
             href={`/quotes/${quote.id}`}
             className="w-fit self-end no-underline text-xs text-center hover:bg-highlight border-2 

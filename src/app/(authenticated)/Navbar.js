@@ -22,7 +22,6 @@ const Navbar = () => {
           </Link>
           <Link
             href="/quotes/add-quote"
-            // className="bg-buttonPrimary hover:bg-buttonSecondary text-white font-bold py-2 px-4 rounded text-sm sm:text-base"
             className="w-fit self-end text-sm text-center bg-primary hover:bg-highlight border-2 
   text-primary font-bold py-2 px-4 ml-4 sm:ml-8 rounded-md focus:shadow-outline"
           >
