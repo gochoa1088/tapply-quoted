@@ -3,8 +3,8 @@ import UpdateQuoteForm from "./UpdateQuoteForm";
 import getQuote from "@/firebase/firestore/Quote/getQuote";
 import DeleteQuoteButton from "./DeleteQuoteButton";
 import getAllQuotes from "@/firebase/firestore/Quote/getAllQuotes";
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+// export const dynamic = "force-dynamic";
+// export const revalidate = 0;
 export async function generateStaticParams() {
   const quotes = await getAllQuotes();
 
