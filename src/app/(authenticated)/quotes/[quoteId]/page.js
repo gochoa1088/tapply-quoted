@@ -18,7 +18,7 @@ const Quote = async ({ params: { quoteId } }) => {
           Delete quote
         </h1>
         <p className="text-sm">
-          Warning. This action is irreversible. This quote and it's associated
+          Warning. This action is irreversible. This quote and its associated
           data will be deleted.
         </p>
         <DeleteQuoteButton quoteData={quoteData} />
