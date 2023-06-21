@@ -2,16 +2,16 @@ import getUser from "@/firebase/firestore/User/getUser";
 import Image from "next/image";
 import React from "react";
 import SettingsLink from "./SettingsLink";
-import getAllUsers from "@/firebase/firestore/User/getAllUsers";
-// export const dynamic = "force-dynamic";
-// export const revalidate = 0;
-export async function generateStaticParams() {
-  const users = await getAllUsers();
+// import getAllUsers from "@/firebase/firestore/User/getAllUsers";
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+// export async function generateStaticParams() {
+//   const users = await getAllUsers();
 
-  return users.map((user) => ({
-    userId: user.id,
-  }));
-}
+//   return users.map((user) => ({
+//     userId: user.id,
+//   }));
+// }
 
 const Profile = async ({ params: { userId } }) => {
   const userData = await getUser(userId);
