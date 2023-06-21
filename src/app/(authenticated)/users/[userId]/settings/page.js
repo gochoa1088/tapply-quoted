@@ -2,6 +2,16 @@ import getUser from "@/firebase/firestore/User/getUser";
 import React from "react";
 import SettingsForm from "./SettingsForm";
 
+export async function generateStaticParams() {
+  const users = await getAllUsers();
+
+  return users.map((user) => ({
+    userId: user.id,
+  }));
+}
+
+export const revalidate = 30;
+
 const UserSettings = async ({ params: { userId } }) => {
   const userData = await getUser(userId);
   return (

@@ -12,6 +12,8 @@ export async function generateStaticParams() {
   }));
 }
 
+export const revalidate = 30;
+
 const Profile = async ({ params: { userId } }) => {
   const userData = await getUser(userId);
   const { firstName, photo, username, email, favoriteQuote } = userData;
