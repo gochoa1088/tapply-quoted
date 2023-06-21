@@ -1,16 +1,9 @@
 import getUser from "@/firebase/firestore/User/getUser";
 import React from "react";
 import SettingsForm from "./SettingsForm";
-// import getAllUsers from "@/firebase/firestore/User/getAllUsers";
+
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-// export async function generateStaticParams() {
-//   const users = await getAllUsers();
-
-//   return users.map((user) => ({
-//     userId: user.id,
-//   }));
-// }
 
 const UserSettings = async ({ params: { userId } }) => {
   const userData = await getUser(userId);

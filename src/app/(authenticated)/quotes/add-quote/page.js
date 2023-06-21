@@ -1,5 +1,8 @@
 import CreateQuoteForm from "./CreateQuoteForm";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 const AddQuote = () => {
   return (
     <div className="flex flex-col w-full">
