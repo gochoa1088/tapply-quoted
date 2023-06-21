@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
+export const revalidate = 0;
 
 const AuthenticatedLayout = ({ children }) => {
   const { authedUser } = useAuth();

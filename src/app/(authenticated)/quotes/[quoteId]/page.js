@@ -12,8 +12,6 @@ export async function generateStaticParams() {
   }));
 }
 
-// export const revalidate = 30;
-
 const Quote = async ({ params: { quoteId } }) => {
   const quoteData = await getQuote(quoteId);
   return (
