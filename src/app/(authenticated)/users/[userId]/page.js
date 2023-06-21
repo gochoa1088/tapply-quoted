@@ -5,7 +5,7 @@ import SettingsLink from "./SettingsLink";
 import getAllUsers from "@/firebase/firestore/User/getAllUsers";
 
 export async function generateStaticParams() {
-  const users = getAllUsers();
+  const users = await getAllUsers();
 
   return users.map((user) => ({
     userId: user.id,
