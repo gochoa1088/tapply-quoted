@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -7,12 +7,23 @@ import {
   loginInWithGoogle,
   loginWithEmaiAndPassword,
 } from "@/firebase/firebaseAuth";
+import { useAuth } from "@/context/AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { authedUser } = useAuth();
   const router = useRouter();
+
+  useEffect(() => {
+    if (authedUser) {
+      router.push("/quotes");
+    } else {
+      setLoading(false);
+    }
+  }, [authedUser]);
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -35,6 +46,11 @@ const Login = () => {
 
   return (
     <main className="flex flex-col min-h-screen max-w-2xl items-center justify-between mx-auto p-6">
+      {loading && (
+        <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center z-50 backdrop-blur-sm">
+          <div className="animate-spin rounded-full h-20 w-20 border-t-2 border-b-2 border-gray-900"></div>
+        </div>
+      )}
       <h1 className="my-10">
         Sign in to <span className="font-semibold text-secondary">Quoted</span>
       </h1>

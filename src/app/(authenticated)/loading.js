@@ -1,4 +1,3 @@
-// "use client";
 export default function Loading() {
   return (
     <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center z-50 backdrop-blur-sm">
