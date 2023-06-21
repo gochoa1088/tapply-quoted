@@ -24,7 +24,7 @@ const Signup = () => {
         confirmPassword
       );
 
-      return router.push("/home");
+      return router.push("/quotes");
     } catch (error) {
       setError(error.message);
     }
@@ -33,7 +33,7 @@ const Signup = () => {
   const handleGoogleLogin = async () => {
     try {
       await loginInWithGoogle();
-      return router.push("/home");
+      return router.push("/quotes");
     } catch (error) {
       setError(error.message);
     }

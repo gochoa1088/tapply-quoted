@@ -14,11 +14,14 @@ const Navbar = () => {
     <nav className="bg-secondary px-4 py-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
-          <Link href="/home" className="text-primary font-bold sm:text-lg mr-4">
+          <Link
+            href="/quotes"
+            className="text-primary font-bold sm:text-lg mr-4"
+          >
             Home
           </Link>
           <Link
-            href="/add-quote"
+            href="/quotes/add-quote"
             className="bg-buttonPrimary hover:bg-buttonSecondary text-white font-bold py-2 px-4 rounded text-sm sm:text-base"
           >
             Create Quote
@@ -26,7 +29,7 @@ const Navbar = () => {
         </div>
         <div className="flex items-center">
           <Link
-            href={`/${authedUser?.uid}`}
+            href={`/users/${authedUser?.uid}`}
             className="text-primary mr-4 text-sm sm:text-base"
           >
             Profile

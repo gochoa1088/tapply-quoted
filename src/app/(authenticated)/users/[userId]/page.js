@@ -3,13 +3,8 @@ import Image from "next/image";
 import React from "react";
 import SettingsLink from "./SettingsLink";
 
-async function fetchUser(userId) {
-  const res = await getUser(userId);
-  return res;
-}
-
 const Profile = async ({ params: { userId } }) => {
-  const userData = await fetchUser(userId);
+  const userData = await getUser(userId);
   const { firstName, photo, username, email, favoriteQuote } = userData;
   return (
     <div className="flex flex-col w-full">
