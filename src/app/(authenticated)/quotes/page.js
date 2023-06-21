@@ -10,7 +10,7 @@ const Home = async () => {
       </h1>
       <ul className="flex flex-col gap-3">
         {quotesData.map((q) => (
-          <QuoteCard quote={q} />
+          <QuoteCard key={q.id} quote={q} />
         ))}
       </ul>
     </div>
