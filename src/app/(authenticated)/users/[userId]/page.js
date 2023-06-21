@@ -11,29 +11,29 @@ const Profile = async ({ params: { userId } }) => {
       <h1 className="text-headingColor font-semibold pb-2 mb-4 border-b border-borderprimary sm:w-full">
         {username}
       </h1>
-      <div className="flex flex-col sm:flex-row sm:gap-4">
+      <div className="flex flex-col sm:flex-row sm:gap-8">
         <Image
           src={photo}
-          className="my-6 rounded-full self-center w-48 h-48 sm:self-start sm:ml-8"
+          className="my-6 rounded-full self-center w-48 h-48 sm:self-start sm:ml-2"
           width={192}
           height={192}
           priority
           alt={username}
         />
-        <p className="text-center italic my-8 text-secondary sm:text-start sm:justify-end">
-          {favoriteQuote}
-        </p>
-      </div>
-      <div className="flex flex-col gap-4 py-2">
-        <div>
-          {firstName && <h1 className="font-semibold">{firstName}</h1>}
-          <h2 className="text-secondary">{username}</h2>
+        <div className="flex flex-col gap-4 py-2">
+          <p className="text-center italic my-8 text-secondary sm:text-start sm:justify-end sm:my-2">
+            {favoriteQuote}
+          </p>
+          <div className="flex flex-col sm:items-end sm:mt-8">
+            {firstName && <h1 className="font-semibold">{firstName}</h1>}
+            <h2 className="text-secondary">{username}</h2>
+            <p className="truncate mb-2">
+              <span className="mr-2">&#9993;</span>
+              {email}
+            </p>
+            <SettingsLink userId={userId} />
+          </div>
         </div>
-        <SettingsLink userId={userId} />
-        <p className="truncate">
-          <span className="mr-2">&#9993;</span>
-          {email}
-        </p>
       </div>
     </div>
   );
