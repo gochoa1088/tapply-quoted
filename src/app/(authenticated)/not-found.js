@@ -6,7 +6,10 @@ export default function NotFound() {
       <h2>Not Found</h2>
       <p>Could not find requested resource</p>
       <p>
-        Go to <Link href="/quotes">quotes</Link>
+        Go to{" "}
+        <Link prefetch={false} href="/quotes">
+          quotes
+        </Link>
       </p>
     </div>
   );

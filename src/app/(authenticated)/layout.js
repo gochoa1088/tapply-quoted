@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
+export const dynamic = "force-static";
 export const revalidate = 0;
 
 const AuthenticatedLayout = ({ children }) => {

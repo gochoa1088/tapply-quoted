@@ -107,6 +107,7 @@ const Signup = () => {
         <p className="font-semibold text-sm">
           Already have an account?
           <Link
+            prefetch={false}
             className="no-underline mx-2 inline-block align-baseline font-semibold text-sm text-red-400 hover:text-red-500"
             href="/login"
           >

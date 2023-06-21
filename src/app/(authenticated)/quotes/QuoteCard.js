@@ -62,6 +62,7 @@ const QuoteCard = ({ quote }) => {
         {quote.userId === authedUser?.uid && (
           <Link
             href={`/quotes/${quote.id}`}
+            prefetch={false}
             className="w-fit self-end no-underline text-xs text-center hover:bg-highlight border-2 
   text-primary font-bold py-2 px-4 mt-4 rounded-md focus:shadow-outline"
           >

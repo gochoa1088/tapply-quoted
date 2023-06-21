@@ -85,6 +85,7 @@ const Login = () => {
         <p className="font-semibold text-sm">
           New to Quoted?
           <Link
+            prefetch={false}
             className="no-underline mx-2 inline-block align-baseline font-semibold text-sm text-red-400 hover:text-red-500"
             href="/signup"
           >

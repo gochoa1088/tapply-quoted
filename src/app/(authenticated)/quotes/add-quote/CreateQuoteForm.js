@@ -125,6 +125,7 @@ const CreateQuoteForm = () => {
           Add
         </button>
         <Link
+          prefetch={false}
           href="/quotes"
           className="w-1/4 min-w-[84px] no-underline text-sm text-center hover:bg-highlight border-2 
   text-primary font-bold py-2 px-4 rounded-md focus:shadow-outline sm:w-1/6 sm:text-base"
