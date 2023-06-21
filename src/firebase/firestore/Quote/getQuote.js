@@ -6,9 +6,12 @@ export default async function getQuote(quoteId) {
     const docRef = doc(firestore, "quotes", quoteId);
     const docSnapshot = await getDoc(docRef);
     const quote = docSnapshot.data();
-    quote.createdAt = quote.createdAt.toDate();
+    if (!quote) {
+      throw new Error("Quote not found.");
+    }
+    quote.createdAt = quote?.createdAt.toDate();
     return quote;
   } catch (error) {
-    throw e;
+    throw error;
   }
 }
