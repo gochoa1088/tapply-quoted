@@ -1,6 +1,7 @@
 import getUser from "@/firebase/firestore/User/getUser";
 import React from "react";
 import SettingsForm from "./SettingsForm";
+import getAllUsers from "@/firebase/firestore/User/getAllUsers";
 
 export async function generateStaticParams() {
   const users = await getAllUsers();
