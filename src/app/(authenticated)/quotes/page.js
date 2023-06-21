@@ -1,6 +1,7 @@
 import getAllQuotes from "@/firebase/firestore/Quote/getAllQuotes";
 import QuotesList from "./QuotesList";
-
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 const Quotes = async () => {
   const quotesData = await getAllQuotes();
   return (
