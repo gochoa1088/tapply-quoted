@@ -18,7 +18,7 @@ const Login = () => {
     event.preventDefault();
     try {
       await loginWithEmaiAndPassword(email, password);
-      return router.push("/home");
+      return router.push("/quotes");
     } catch (error) {
       setError(error.message);
     }
@@ -27,7 +27,7 @@ const Login = () => {
   const handleGoogleLogin = async () => {
     try {
       await loginInWithGoogle();
-      return router.push("/home");
+      return router.push("/quotes");
     } catch (error) {
       setError(error.message);
     }

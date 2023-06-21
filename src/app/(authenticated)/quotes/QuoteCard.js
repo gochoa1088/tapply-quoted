@@ -1,19 +1,28 @@
 "use client";
+import { useAuth } from "@/context/AuthContext";
+import updateQuote from "@/firebase/firestore/Quote/updateQuote";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 const QuoteCard = ({ quote }) => {
+  const { authedUser } = useAuth();
   const [likes, setLikes] = useState(quote.likes);
 
-  const handleUpvote = () => {
+  const handleUpvote = async (id) => {
     setLikes(likes + 1);
+    await updateQuote(id, { likes: likes + 1 });
   };
 
-  const handleDownvote = () => {
+  const handleDownvote = async (id) => {
     setLikes(likes - 1);
+    await updateQuote(id, { likes: likes - 1 });
   };
   return (
-    <li key={quote.id} className="w-full rounded overflow-hidden p-4 shadow-lg">
+    <li
+      key={quote.id}
+      className="relative w-full rounded overflow-hidden p-4 shadow-lg"
+    >
       <div className="flex flex-col">
         <div className="flex justify-around">
           <Image
@@ -36,7 +45,7 @@ const QuoteCard = ({ quote }) => {
         <div className="flex mt-4 justify-around sm:gap-4 sm:justify-center">
           <button
             className="bg-red-300 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-            onClick={handleDownvote}
+            onClick={() => handleDownvote(quote.id)}
           >
             Downvote
           </button>
@@ -45,12 +54,22 @@ const QuoteCard = ({ quote }) => {
           </span>
           <button
             className="bg-green-300 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-            onClick={handleUpvote}
+            onClick={() => handleUpvote(quote.id)}
           >
             Upvote
           </button>
         </div>
       </div>
+      {quote.userId === authedUser.uid && (
+        <div className="absolute bottom-4 right-4">
+          <Link
+            href={`/quotes/${quote.id}`}
+            className="underline text-sm text-blue-500"
+          >
+            Edit quote
+          </Link>
+        </div>
+      )}
     </li>
   );
 };
