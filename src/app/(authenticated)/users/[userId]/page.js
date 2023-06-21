@@ -13,7 +13,7 @@ const Profile = async ({ params: { userId } }) => {
       </h1>
       <div className="flex flex-col sm:flex-row sm:gap-8">
         <Image
-          src={photo}
+          src={photo || "/default-photo.jpg"}
           className="my-6 rounded-full self-center w-48 h-48 sm:self-start sm:ml-2"
           width={192}
           height={192}

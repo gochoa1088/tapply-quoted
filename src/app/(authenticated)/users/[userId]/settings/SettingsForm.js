@@ -11,7 +11,9 @@ const SettingsForm = ({ user }) => {
   const [firstName, setFirstName] = useState(user.firstName || "");
   const [lastName, setLastName] = useState(user.lastName || "");
   const [favoriteQuote, setFavoriteQuote] = useState(user.favoriteQuote || "");
-  const [imageFile, setImageFile] = useState(user.photo);
+  const [imageFile, setImageFile] = useState(
+    user.photo || "/default-photo.jpg"
+  );
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
