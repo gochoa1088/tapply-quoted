@@ -8,7 +8,7 @@ const Home = async () => {
       <h1 className="text-headingColor font-semibold pb-2 mb-4 border-b border-borderprimary sm:w-full">
         Quotes
       </h1>
-      <ul>
+      <ul className="flex flex-col gap-3">
         {quotesData.map((q) => (
           <QuoteCard quote={q} />
         ))}
